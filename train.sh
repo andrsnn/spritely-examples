@@ -2,6 +2,8 @@
 # Train a LoRA on Qwen Image Edit 2511 from a pairs folder made by make_grow_pairs.py or the Blender script.
 #   bash train.sh <pairs folder> <name> [steps, default 600]
 # Saves a version every 200 steps in /workspace/output/<name>/, plus test pictures from sample_prompts.txt.
+# On a 24 GB card (RTX 4090), keep part of the model in normal memory instead:
+#   TRAIN_EXTRA="--blocks_to_swap 30 --gradient_checkpointing_cpu_offload" bash train.sh ...
 set -e
 P=$(realpath "$1"); NAME=$2; STEPS=${3:-600}
 W=${WORKSPACE:-/workspace}; M=$W/models/split_files
@@ -20,5 +22,5 @@ accelerate launch --num_cpu_threads_per_process 1 --mixed_precision bf16 src/mus
   --max_train_steps $STEPS --save_every_n_steps 200 --seed 42 \
   --sample_prompts $P/sample_prompts.txt --sample_every_n_steps 200 --sample_at_first \
   --max_data_loader_n_workers 2 --persistent_data_loader_workers \
-  --output_dir $W/output/$NAME --output_name $NAME
+  --output_dir $W/output/$NAME --output_name $NAME $TRAIN_EXTRA
 echo "done: $(ls $W/output/$NAME/*.safetensors)"
