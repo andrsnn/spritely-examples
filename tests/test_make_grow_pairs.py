@@ -34,3 +34,13 @@ def test_folder_run(tmp_path):
     assert len(lines) == 9 and all(Path(json.loads(l)['control_path']).exists() for l in lines)
     assert '--ci' in (tmp_path / 'out' / 'sample_prompts.txt').read_text()
     assert 'control_resolution = [256, 256]' in (tmp_path / 'out' / 'dataset.toml').read_text()
+
+
+def test_replicate_zip(tmp_path):
+    import zipfile
+    import to_replicate_zip as rz
+    src = tmp_path / 'pics'; src.mkdir()
+    for k in range(3): Image.effect_noise((600, 600), 50 + k).convert('RGB').save(src / f'{k}.png')
+    g.main(['--images', str(src), '--out', str(tmp_path / 'p'), '--size', '256', '--per-image', '5', '--holdout', '1'])
+    names = zipfile.ZipFile(rz.main([str(tmp_path / 'p'), '--max', '4'])).namelist()
+    assert sorted(names)[:3] == ['0001.txt', '0001_end.png', '0001_start.png'] and len(names) == 12
