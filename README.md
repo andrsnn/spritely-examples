@@ -60,6 +60,6 @@ Download the `.safetensors` file to use your LoRA anywhere that runs Qwen Image 
 
 - Trainer: [musubi-tuner](https://github.com/kohya-ss/musubi-tuner) by kohya-ss.
 - Model: Qwen Image Edit 2511 (Apache 2.0), files from [Comfy-Org](https://huggingface.co/Comfy-Org/Qwen-Image-Edit_ComfyUI).
-- Characters: [KayKit](https://kaylousberg.com) by Kay Lousberg. They're CC0, so you can use them anywhere. I bought Kay's packs and I recommend you do too: [itch.io](https://kaylousberg.itch.io) or [Patreon](https://patreon.com/kaylousberg).
+- Characters: [KayKit](https://kaylousberg.com) by Kay Lousberg. Free to use (CC0). Thanks, Kay!
 
 MIT licence for the scripts in this repo.
