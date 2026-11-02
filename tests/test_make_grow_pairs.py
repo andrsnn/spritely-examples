@@ -42,5 +42,7 @@ def test_replicate_zip(tmp_path):
     src = tmp_path / 'pics'; src.mkdir()
     for k in range(3): Image.effect_noise((600, 600), 50 + k).convert('RGB').save(src / f'{k}.png')
     g.main(['--images', str(src), '--out', str(tmp_path / 'p'), '--size', '256', '--per-image', '5', '--holdout', '1'])
-    names = zipfile.ZipFile(rz.main([str(tmp_path / 'p'), '--max', '4'])).namelist()
+    zf = zipfile.ZipFile(rz.main([str(tmp_path / 'p'), '--max', '4', '--size', '128'])); names = zf.namelist()
+    import io
+    assert max(Image.open(io.BytesIO(zf.read('0001_end.png'))).size) == 128
     assert sorted(names)[:3] == ['0001.txt', '0001_end.png', '0001_start.png'] and len(names) == 12
