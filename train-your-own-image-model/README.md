@@ -1,6 +1,6 @@
 # Train your own image model
 
-Scripts from my video "How to Train Your Own AI Image Model". They train a small add-on (a LoRA) for Qwen Image Edit 2511 on a rented graphics card, from training pairs you make yourself.
+Scripts from my video "How to Train Your Own AI Image Model". They train a small add-on (a LoRA) for Qwen Image Edit 2511 on your own graphics card or a rented one, from training pairs you make yourself.
 
 A training pair is a picture you give the model, the picture you want back, and one sentence that says what to do. There are two ways to make pairs here:
 
@@ -14,6 +14,8 @@ A training pair is a picture you give the model, the picture you want back, and 
 - For Blender: nothing. The script downloads 9 free CC0 characters by Kay Lousberg.
 
 ## Steps
+
+If you'd rather not type the commands, give Claude Code the prompt in [PROMPT.md](PROMPT.md) and it runs these steps for you.
 
 Open a terminal on the pod, then:
 
