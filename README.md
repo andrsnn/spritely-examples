@@ -14,6 +14,4 @@ Each folder goes with one video and has its own README with the steps.
 |---|---|
 | [`sprite-cutout/`](sprite-cutout/) | Cuts sprites out of a sheet with clean edges (no coloured fringe from a magenta or tan background). Python. |
 
-My games are coming to [spritely.studio](https://spritely.studio).
-
 MIT license, see [LICENSE](LICENSE).
